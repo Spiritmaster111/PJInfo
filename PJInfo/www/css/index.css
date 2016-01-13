@@ -27,7 +27,7 @@ body {
     background-color: #efefef;
     background-attachment:fixed;
     font-family: 'Montserrat', sans-serif;
-    font-size:12px;
+    font-size:9px;
     height:100%;
     margin:0px;
     padding:0px;
@@ -105,4 +105,40 @@ iframe {
     text-decoration: none;
     color: white;
     line-height: 100%;
+}
+
+@media screen and (min-width:320px) {
+	body {
+		font-size:12px;
+	}
+}
+
+@media screen and (min-width:480px) {
+	body {
+		font-size:18px;
+	}
+}
+
+@media screen and (min-width:540px) {
+	body {
+		font-size: 20px;
+	}
+}
+
+@media screen and (min-width:695px) {
+	body {
+		font-size:26px;
+	}
+}
+
+@media screen and (min-width:855px) {
+	body {
+		font-size:32px;
+	}
+}
+
+@media screen and (min-width:1015px) {
+	body {
+		font-size:38px;
+	}
 }
