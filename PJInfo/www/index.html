@@ -66,13 +66,13 @@
 		<div class="page" id="instellingen">
 			<div id="instellingen">
             <h2>Selecteer school</h2>
-				<select>
-					<option value="gymnasium">Stedelijk Gymnasium Leeuwarden</option>
-					<option value="montessori">Montessori High School</option>
-					<option value="lyceum">Leeuwarder Lyceum</option>
-					<option value="foorakker">De Foorakker</option>
-					<option value="dedyk">De Dyk</option>
-					<option value="dokkum">Dalton Dokkum</option>
+				<select onchange="localStorage.school = this.value; app.initIFrames()">
+					<option class="school" value="gymnasium">Stedelijk Gymnasium Leeuwarden</option>
+					<option class="school" value="montessori">Montessori High School</option>
+					<option class="school" value="lyceum">Leeuwarder Lyceum</option>
+					<!-- option class="school" value="foorakker">De Foorakker</option -->
+					<option class="school" value="dedyk">De Dyk</option>
+					<option class="school" value="dokkum">Dalton Dokkum</option>
 				</select>
 			</div>
 		</div>

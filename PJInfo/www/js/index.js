@@ -53,14 +53,28 @@ var app = {
 			"instellingen": document.getElementById('tab-instellingen')
 		};
 		
+		schools = document.getElementsByClassName('school');
+		
 		currentPage = pages.roosterwijzigingen;
 		currentTab = tabs.roosterwijzigingen;
+		
+		if (localStorage.school == null) {
+			localStorage.school = "gymnasium";
+		}
+		
+		for (var i = 0; i < 6; i++) {
+			if (schools[i].value == localStorage.school) {
+				schools[i].selected = true;
+			} else {
+				schools[i].selected = false;
+			}
+		}
 		
 		app.initIFrames();
 	},
 	
 	// Handles menu button event
-	onMenuButton: function() {
+	onMenuButton: function() {	
 		switchPage("instellingen");
 	},
 	
@@ -71,8 +85,39 @@ var app = {
 	
 	// Required because loading the IFrame early causes problems with the javascript
 	initIFrames: function() {
-		pages.roosterwijzigingen.innerHTML = "<iframe src='http://www3.pj.nl/gym_info_leerlingen/subst_001.htm'/>";
-		pages.mededelingen.innerHTML = "<iframe src='http://www3.pj.nl/infoschermgymnasium'/>";
+		switch(localStorage.school) {
+			case "gymnasium": 
+				pages.roosterwijzigingen.innerHTML = "<iframe src='http://www3.pj.nl/gym_info_leerlingen/subst_001.htm'/>";
+				pages.mededelingen.innerHTML = "<iframe src='http://www3.pj.nl/infoschermgymnasium'/>";
+				break;
+			
+			case "montessori":
+				pages.roosterwijzigingen.innerHTML = "<iframe src='http://www3.pj.nl/mon_info_leerlingen/subst_001.htm'/>";
+				pages.mededelingen.innerHTML = "<iframe src='http://www3.pj.nl/infoschermmontessori'/>";
+				break;
+				
+			case "lyceum":
+				pages.roosterwijzigingen.innerHTML = "<iframe src='http://www3.pj.nl/lyc_info_leerlingen/subst_001.htm'/>";
+				pages.mededelingen.innerHTML = "<iframe src='http://www3.pj.nl/infoschermlyceum'/>";
+				break;
+				
+			case "montessori":
+				pages.roosterwijzigingen.innerHTML = "<iframe src='http://www3.pj.nl/mon_info_leerlingen/subst_001.htm'/>";
+				pages.mededelingen.innerHTML = "<iframe src='http://www3.pj.nl/infoschermmontessori'/>";
+				break;
+			
+			case "dedyk":
+				pages.roosterwijzigingen.innerHTML = "<iframe src='http://www3.pj.nl/dyk_info_leerlingen/subst_001.htm'/>";
+				pages.mededelingen.innerHTML = "<iframe src='http://www3.pj.nl/infoschermdedyk'/>";
+				break;
+				
+			case "dokkum":
+				pages.roosterwijzigingen.innerHTML = "<iframe src='http://www3.pj.nl/dok_info_leerlingen/subst_001.htm'/>";
+				pages.mededelingen.innerHTML = "<iframe src='http://www3.pj.nl/infoschermdokkum'/>";
+				break;
+		}
+		
+		
 	},
 	
 	// Switch display of "page" divs
