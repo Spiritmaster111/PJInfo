@@ -135,30 +135,50 @@ iframe {
 
 @media screen and (min-width:480px) {
 	body {
-		font-size: 16px;
+		font-size: 14px;
+	}
+	
+	#banner {
+		font-size: 18px;
 	}
 }
 
 @media screen and (min-width:540px) {
 	body {
-		font-size: 18px;
+		font-size: 15px;
+	}
+	
+	#banner {
+		font-size: 20px;
 	}
 }
 
 @media screen and (min-width:695px) {
 	body {
-		font-size: 24px;
+		font-size: 20px;
+	}
+	
+	#banner {
+		font-size: 26px;
 	}
 }
 
 @media screen and (min-width:855px) {
 	body {
-		font-size: 30px;
+		font-size: 24px;
+	}
+	
+	#banner {
+		font-size: 32px;
 	}
 }
 
 @media screen and (min-width:1015px) {
 	body {
+		font-size: 29px;
+	}
+	
+	#banner {
 		font-size: 38px;
 	}
 }
