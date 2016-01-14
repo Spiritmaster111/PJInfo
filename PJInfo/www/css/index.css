@@ -65,7 +65,7 @@ body {
     text-align: center;
 }
 
-#banner2 > a {
+#banner2 > .tab {
     text-decoration: none;
     color: white;
     width: 50%;
@@ -101,44 +101,64 @@ iframe {
     text-align: center;
 }
 
-#footer > a {
+#footer > .tab {
     text-decoration: none;
     color: white;
     line-height: 100%;
 }
 
+.page {
+	display: none;
+}
+
+.page.selected {
+	display: block;
+}
+
+.tab.selected > h2 {
+	color: #cccccc;
+}
+
+#demo {
+	display: none;
+}
+
 @media screen and (min-width:320px) {
 	body {
-		font-size:12px;
+		font-size: 9px;
+	}
+	
+	#banner {
+		font-size: 12px;
 	}
 }
 
 @media screen and (min-width:480px) {
 	body {
-		font-size:18px;
+		font-size: 16px;
 	}
 }
 
 @media screen and (min-width:540px) {
 	body {
-		font-size: 20px;
+		font-size: 18px;
 	}
 }
 
 @media screen and (min-width:695px) {
 	body {
-		font-size:26px;
+		font-size: 24px;
 	}
 }
 
 @media screen and (min-width:855px) {
 	body {
-		font-size:32px;
+		font-size: 30px;
 	}
 }
 
 @media screen and (min-width:1015px) {
 	body {
-		font-size:38px;
+		font-size: 38px;
 	}
 }

@@ -17,33 +17,80 @@
  * under the License.
  */
 var app = {
+	
     // Application Constructor
     initialize: function() {
         this.bindEvents();
     },
+	
     // Bind Event Listeners
     //
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
+		document.addEventListener('menubutton', this.onMenuButton, false);
+		document.addEventListener('backbutton', this.onBackButton, false);
+
+		app.onDeviceReady();
     },
+	
     // deviceready Event Handler
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        app.receivedEvent('deviceready');
-    },
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
-        console.log('Received Event: ' + id);
-    }
+		
+		pages = { 
+			"roosterwijzigingen": document.getElementById('roosterwijzigingen'), 
+			"mededelingen": document.getElementById('mededelingen'), 
+			"instellingen": document.getElementById('instellingen')
+		};
+		
+		tabs = {
+			"roosterwijzigingen": document.getElementById('tab-roosterwijzigingen'),
+			"mededelingen": document.getElementById('tab-mededelingen'),
+			"instellingen": document.getElementById('tab-instellingen')
+		};
+		
+		currentPage = pages.roosterwijzigingen;
+		currentTab = tabs.roosterwijzigingen;
+		
+		app.initIFrames();
+	},
+	
+	// Handles menu button event
+	onMenuButton: function() {
+		switchPage("instellingen");
+	},
+	
+	// Handles back button event
+	onBackButton: function() {
+		switchPage(previousPage);
+	},
+	
+	// Required because loading the IFrame early causes problems with the javascript
+	initIFrames: function() {
+		pages.roosterwijzigingen.innerHTML = "<iframe src='http://www3.pj.nl/gym_info_leerlingen/subst_001.htm'/>";
+		pages.mededelingen.innerHTML = "<iframe src='http://www3.pj.nl/infoschermgymnasium'/>";
+	},
+	
+	// Switch display of "page" divs
+	switchPage: function(page) {
+		
+		var pageToLoad = pages[page];
+		
+    	currentPage.className = 'page';
+    	pageToLoad.className = 'page selected';
+		
+    	
+    	for (var i in tabs) {
+    		tabs[i].className = "tab";
+    	}
+    	tabs[page].className = "tab selected";
+    	
+    	
+    	previousPage = currentPage;
+    	currentPage = pageToLoad;
+	}
 };
