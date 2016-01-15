@@ -44,16 +44,23 @@ var app = {
 		pages = { 
 			"roosterwijzigingen": document.getElementById('roosterwijzigingen'), 
 			"mededelingen": document.getElementById('mededelingen'), 
-			"instellingen": document.getElementById('instellingen')
+			"instellingen": document.getElementById('instellingen'),
+			"leraarrooster": document.getElementById('leraarrooster')
 		};
 		
 		tabs = {
 			"roosterwijzigingen": document.getElementById('tab-roosterwijzigingen'),
 			"mededelingen": document.getElementById('tab-mededelingen'),
-			"instellingen": document.getElementById('tab-instellingen')
+			"instellingen": document.getElementById('tab-instellingen'),
+			"leraarrooster": document.getElementById('tab-leraarrooster')
 		};
 		
 		schools = document.getElementsByClassName('school');
+		teachers = document.getElementsByClassName('teacher');
+		
+		teacherSelect = document.getElementById('teacherSelect');
+		teacherSelectGym = document.getElementById('teacherSelectGym');
+		teacherSelectMon = document.getElementById('teacherSelectMon');
 		
 		currentPage = pages.roosterwijzigingen;
 		currentTab = tabs.roosterwijzigingen;
@@ -70,7 +77,16 @@ var app = {
 			}
 		}
 		
-		app.initIFrames();
+		for (var i = 0; i < teachers.length; i++) {
+			if (teachers[i].value == localStorage.teacher) {
+				teachers[i].selected = true;
+			} else {
+				teachers[i].selected = false;
+			}
+		}
+		
+		app.onSchoolSwitch();
+		
 	},
 	
 	// Handles menu button event
@@ -84,40 +100,91 @@ var app = {
 	},
 	
 	// Required because loading the IFrame early causes problems with the javascript
-	initIFrames: function() {
+	onSchoolSwitch: function(resetTeacher) {
+		
 		switch(localStorage.school) {
 			
 			case "gymnasium": 
 				pages.roosterwijzigingen.innerHTML = "<iframe src='http://www3.pj.nl/gym_info_leerlingen/subst_001.htm'/>";
 				pages.mededelingen.innerHTML = "<iframe src='http://www3.pj.nl/infoschermgymnasium'/>";
+				teacherSelect.className = 'shown';
+				teacherSelectGym.classList.remove('hidden');
+				teacherSelectMon.classList.add('hidden');
 				break;
 			
 			case "montessori":
 				pages.roosterwijzigingen.innerHTML = "<iframe src='http://www3.pj.nl/mon_info_leerlingen/subst_001.htm'/>";
 				pages.mededelingen.innerHTML = "<iframe src='http://www3.pj.nl/infoschermmontessori'/>";
+				teacherSelect.className = 'shown';
+				teacherSelectGym.className = 'hidden';
+				teacherSelectMon.className = 'shown';
 				break;
 				
 			case "lyceum":
 				pages.roosterwijzigingen.innerHTML = "<iframe src='http://www3.pj.nl/lyc_info_leerlingen/subst_001.htm'/>";
 				pages.mededelingen.innerHTML = "<iframe src='http://www3.pj.nl/infoschermlyceum'/>";
+				teacherSelect.className = 'hidden';
+				teacherSelectGym.className = 'hidden';
+				teacherSelectMon.className = 'hidden';
 				break;
 				
 			case "montessori":
 				pages.roosterwijzigingen.innerHTML = "<iframe src='http://www3.pj.nl/mon_info_leerlingen/subst_001.htm'/>";
 				pages.mededelingen.innerHTML = "<iframe src='http://www3.pj.nl/infoschermmontessori'/>";
+				teacherSelect.className = 'hidden';
+				teacherSelectGym.className = 'hidden';
+				teacherSelectMon.className = 'hidden';
 				break;
 			
 			case "dedyk":
 				pages.roosterwijzigingen.innerHTML = "<iframe src='http://www3.pj.nl/dyk_info_leerlingen/subst_001.htm'/>";
 				pages.mededelingen.innerHTML = "<iframe src='http://www3.pj.nl/infoschermdedyk'/>";
+				teacherSelect.className = 'hidden';
+				teacherSelectGym.className = 'hidden';
+				teacherSelectMon.className = 'hidden';
 				break;
 				
 			case "dokkum":
 				pages.roosterwijzigingen.innerHTML = "<iframe src='http://www3.pj.nl/dok_info_leerlingen/subst_001.htm'/>";
 				pages.mededelingen.innerHTML = "<iframe src='http://www3.pj.nl/infoschermdokkum'/>";
+				teacherSelect.className = 'hidden';
+				teacherSelectGym.className = 'hidden';
+				teacherSelectMon.className = 'hidden';
 				break;
 		}
 		
+		if (resetTeacher) {
+			localStorage.teacher = 'none';
+		}
+		
+		for (var i = 0; i < teachers.length; i++) {
+			if (teachers[i].value == localStorage.teacher) {
+				teachers[i].selected = true;
+			} else {
+				teachers[i].selected = false;
+			}
+		}
+		
+		app.onTeacherSwitch();
+		
+	},
+	
+	onTeacherSwitch: function() {
+		if (localStorage.teacher != 'none') {
+			tabs.leraarrooster.classList.remove('hidden')
+			tabs.instellingen.classList.add('sided');
+			switch(localStorage.school) {
+				case "gymnasium": 
+					pages.leraarrooster.innerHTML = "<iframe src='http://www3.pj.nl/roostergym/doc/Doc1_" + localStorage.teacher + ".htm'/>";
+					break;
+				case "montessori":
+					pages.leraarrooster.innerHTML = "<iframe src='http://www3.pj.nl/roostermon/doc/Doc1_" + localStorage.teacher + ".htm'/>";
+					break;
+			}
+		} else {
+			tabs.leraarrooster.classList.add('hidden')
+			tabs.instellingen.classList.remove('sided');
+		}
 	},
 	
 	// Switch display of "page" divs
@@ -125,14 +192,14 @@ var app = {
 		
 		var pageToLoad = pages[page];
 		
-    	currentPage.className = 'page';
-    	pageToLoad.className = 'page selected';
+    	currentPage.classList.remove('selected');
+    	pageToLoad.classList.add('selected');
 		
     	
     	for (var i in tabs) {
-    		tabs[i].className = "tab";
+    		tabs[i].classList.remove('selected');
     	}
-    	tabs[page].className = "tab selected";
+    	tabs[page].classList.add('selected');
     	
     	
     	previousPage = currentPage;
