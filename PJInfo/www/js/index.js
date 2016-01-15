@@ -62,7 +62,7 @@ var app = {
 			localStorage.school = "gymnasium";
 		}
 		
-		for (var i = 0; i < 6; i++) {
+		for (var i = 0; i < schools.length; i++) {
 			if (schools[i].value == localStorage.school) {
 				schools[i].selected = true;
 			} else {
@@ -86,6 +86,7 @@ var app = {
 	// Required because loading the IFrame early causes problems with the javascript
 	initIFrames: function() {
 		switch(localStorage.school) {
+			
 			case "gymnasium": 
 				pages.roosterwijzigingen.innerHTML = "<iframe src='http://www3.pj.nl/gym_info_leerlingen/subst_001.htm'/>";
 				pages.mededelingen.innerHTML = "<iframe src='http://www3.pj.nl/infoschermgymnasium'/>";
@@ -116,7 +117,6 @@ var app = {
 				pages.mededelingen.innerHTML = "<iframe src='http://www3.pj.nl/infoschermdokkum'/>";
 				break;
 		}
-		
 		
 	},
 	
