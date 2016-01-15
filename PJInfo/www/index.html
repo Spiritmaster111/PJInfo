@@ -52,6 +52,9 @@
             <a class="tab" id="tab-instellingen" onclick="app.switchPage('instellingen')">
 				<h2>Instellingen</h2>
 			</a>
+			<a class="tab sided" id="tab-leraarrooster" onclick="app.switchPage('leraarrooster'); app.onTeacherSwitch();">
+				<h2>Leraarrooster</h2>
+			</a>
         </div>
 		
 		<!-- "page" divs met de verschillende paginas -->
@@ -63,10 +66,15 @@
 		
 		</div>
 		
+		<div class="page" id="leraarrooster">
+			<p style="padding-top: 30%; color: black;">Leraarrooster!!</p>
+		</div>
+		
 		<div class="page" id="instellingen">
 			<div id="instellingen">
+			
             <h2>Selecteer school</h2>
-				<select onchange="localStorage.school = this.value; app.initIFrames()">
+				<select onchange="localStorage.school = this.value; app.onSchoolSwitch(true)">
 					<option class="school" value="gymnasium">Stedelijk Gymnasium Leeuwarden</option>
 					<option class="school" value="montessori">Montessori High School</option>
 					<option class="school" value="lyceum">Leeuwarder Lyceum</option>
@@ -74,6 +82,105 @@
 					<option class="school" value="dedyk">De Dyk</option>
 					<option class="school" value="dokkum">Dalton Dokkum</option>
 				</select>
+				
+			<br />
+			<br />
+			<br />
+			<br />
+				
+			<h2 class="hidden" id="teacherSelect">Selecteer leraarrooster</h2>
+				<select class ="hidden" id="teacherSelectGym" onchange="localStorage.teacher = this.value; app.onTeacherSwitch()">
+					<option class="teacher" value="none">(Geen)</option>
+					<option class="teacher" value="anm">Andringa</option>
+					<option class="teacher" value="bat">Barhorst</option>
+					<option class="teacher" value="bie">Bienfait</option>
+					<option class="teacher" value="bnb">Van den Berg</option>
+					<option class="teacher" value="bop">Bouwstra</option>
+					<option class="teacher" value="bth">Bakker</option>
+					<option class="teacher" value="dee">Dijkstra</option>
+					<option class="teacher" value="doj">Doorman</option>
+					<option class="teacher" value="drd">Driessen</option>
+					<option class="teacher" value="egi">Van Egeraat</option>
+					<option class="teacher" value="ger">Gerritzen</option>
+					<option class="teacher" value="gnt">Grent</option>
+					<option class="teacher" value="han">De Haan</option>
+					<option class="teacher" value="hin">Hammenga</option>
+					<option class="teacher" value="hlm">Hallmann</option>
+					<option class="teacher" value="hoo">Hooijmaaijers</option>
+					<option class="teacher" value="hos">Hooijmans</option>
+					<option class="teacher" value="jok">De Jong</option>
+					<option class="teacher" value="jtt">De Jonge</option>
+					<option class="teacher" value="kgg">Klein Goldewijk</option>
+					<option class="teacher" value="kig">Kooistra</option>
+					<option class="teacher" value="kka">Koek</option>
+					<option class="teacher" value="kld">Kleijn</option>
+					<option class="teacher" value="kli">Klijnsma</option>
+					<option class="teacher" value="krb">Kok</option>
+					<option class="teacher" value="laa">Van der Laan</option>
+					<option class="teacher" value="led">Leegstra</option>
+					<option class="teacher" value="leg">Groen</option>
+					<option class="teacher" value="lua">Luub</option>
+					<option class="teacher" value="lyn">Leyenaar</option>
+					<option class="teacher" value="maa">Marchand</option>
+					<option class="teacher" value="mea">Van de Meulen</option>
+					<option class="teacher" value="mib">De Boer</option>
+					<option class="teacher" value="moo">Mooiman</option>
+					<option class="teacher" value="mul">Muller</option>
+					<option class="teacher" value="pri">Prinsen</option>
+					<option class="teacher" value="ser">Swart</option>
+					<option class="teacher" value="sia">Sinnema</option>
+					<option class="teacher" value="sla">Slager</option>
+					<option class="teacher" value="spa">Spa</option>
+					<option class="teacher" value="snj">Spanjer</option>
+					<option class="teacher" value="tab">Takens</option>
+					<option class="teacher" value="tet">Terpstra</option>
+					<option class="teacher" value="vek">Verbeek</option>
+					<option class="teacher" value="vfr">Vermeulen</option>
+					<option class="teacher" value="vgh">Van Gelder</option>
+					<option class="teacher" value="vhs">De Vries</option>
+					<option class="teacher" value="wao">Wagenaar</option>
+					<option class="teacher" value="wjr">Van der Wal</option>
+					<option class="teacher" value="wjs">Wink</option>
+					<option class="teacher" value="wou">Van der Woude</option>
+					<option class="teacher" value="zdj">Van der Zee</option>
+				</select>
+				
+				<select class="hidden" id="teacherSelectMon" onchange="localStorage.teacher = this.value; app.onTeacherSwitch()">
+					<option class="teacher" value="none">(Geen)</option>
+					<option class="teacher" value="Ang">Ang</option>
+					<option class="teacher" value="Ant">Ant</option>
+					<option class="teacher" value="Ber">Ber</option>
+					<option class="teacher" value="Bgm">Bgm</option>
+					<option class="teacher" value="Brp">Brp</option>
+					<option class="teacher" value="Bsc">Bsc</option>
+					<option class="teacher" value="Bss">Bss</option>
+					<option class="teacher" value="Bst">Bst</option>
+					<option class="teacher" value="Bur">Bur</option>
+					<option class="teacher" value="Bxa">Bxa</option>
+					<option class="teacher" value="Dug">Dug</option>
+					<option class="teacher" value="Est">Est</option>
+					<option class="teacher" value="Gdb">Gdb</option>
+					<option class="teacher" value="Gil">Gil</option>
+					<option class="teacher" value="Hft">Hft</option>
+					<option class="teacher" value="Iho">Iho</option>
+					<option class="teacher" value="Jnm">Jnm</option>
+					<option class="teacher" value="Lam">Lam</option>
+					<option class="teacher" value="Leg">Leg</option>
+					<option class="teacher" value="Ley">Ley</option>
+					<option class="teacher" value="Lgs">Lgs</option>
+					<option class="teacher" value="Oos">Oos</option>
+					<option class="teacher" value="Spa">Spa</option>
+					<option class="teacher" value="Sps">Sps</option>
+					<option class="teacher" value="Srs">Srs</option>
+					<option class="teacher" value="Swt">Swt</option>
+					<option class="teacher" value="Vik">Vik</option>
+					<option class="teacher" value="Ypp">Ypp</option>
+					<option class="teacher" value="Zui">Zui</option>
+					<option class="teacher" value="Gub">Bos</option>
+					<option class="teacher" value="Vrt">Vrt</option>
+					<option class="teacher" value="Ret">Ret</option>
+				</select>
+			
 			</div>
 		</div>
 		

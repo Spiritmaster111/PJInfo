@@ -107,6 +107,11 @@ iframe {
     line-height: 100%;
 }
 
+#footer > .tab.sided {
+	width: 50%;
+	float: left;
+}
+
 .page {
 	display: none;
 }
@@ -119,7 +124,7 @@ iframe {
 	color: #cccccc;
 }
 
-#demo {
+.hidden {
 	display: none;
 }
 
