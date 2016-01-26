@@ -32,7 +32,7 @@ var app = {
 		document.addEventListener('menubutton', this.onMenuButton, false);
 		document.addEventListener('backbutton', this.onBackButton, false);
 
-		app.onDeviceReady();
+		//app.onDeviceReady();
     },
 	
     // deviceready Event Handler
