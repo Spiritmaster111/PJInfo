@@ -68,6 +68,10 @@ var app = {
 		if (localStorage.school == null) {
 			localStorage.school = "gymnasium";
 		}
+
+		if (localStorage.teacher == null) {
+			localStorage.teacher = "none";
+		}
 		
 		for (var i = 0; i < schools.length; i++) {
 			if (schools[i].value == localStorage.school) {
