@@ -115,8 +115,8 @@ var app = {
 		switch(localStorage.school) {
 			
 			case "gymnasium": 
-				pages.roosterwijzigingen.innerHTML = "<iframe src='http://www3.pj.nl/gym_info_leerlingen/subst_001.htm'/>";
-				pages.mededelingen.innerHTML = "<iframe src='http://www3.pj.nl/infoschermgymnasium'/>";
+				//pages.roosterwijzigingen.innerHTML = "<iframe src='http://www3.pj.nl/gym_info_leerlingen/subst_001.htm'/>";
+				//pages.mededelingen.innerHTML = "<iframe src='http://www3.pj.nl/infoschermgymnasium'/>";
 				teacherSelect.className = 'shown';
 				teacherSelectGym.classList.remove('hidden');
 				teacherSelectMon.classList.add('hidden');
@@ -195,7 +195,7 @@ var app = {
 		} else {
 			tabs.leraarrooster.classList.add('hidden')
 			tabs.instellingen.classList.remove('sided');
-		}
+		}	
 	},
 	
 	// Switches display of "page" divs
